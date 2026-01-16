@@ -1,206 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>TradeX • Command Center</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeCorner | Live Intraday Opportunities</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#020617;
-  --card:rgba(15,23,42,.75);
-  --border:rgba(148,163,184,.22);
-  --blue:#38bdf8;
+  --bg:#0a0f1f;
+  --panel:#0f152d;
+  --accent:#7da0ff;
   --green:#22c55e;
   --purple:#a78bfa;
-  --text:#e5e7eb;
+  --text:#f4f6ff;
+  --muted:#9aa4c7;
 }
 
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 
 body{
-  margin:0;
   min-height:100vh;
   background:
-    radial-gradient(1200px 600px at 10% -10%, #0ea5e933, transparent),
-    radial-gradient(900px 500px at 90% 10%, #22c55e22, transparent),
-    var(--bg);
+    radial-gradient(900px 420px at 50% 0%, rgba(125,160,255,.15), transparent 60%),
+    linear-gradient(180deg,#070b18,#0a0f1f 60%);
   color:var(--text);
-  font-family:Inter,system-ui;
+}
+
+/* ================= HEADER ================= */
+header{
+  height:76px;
+  padding:0 6%;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
-.container{
-  max-width:980px;
-  width:100%;
-  padding:40px;
+.logo{
+  font-size:22px;
+  font-weight:900;
+  color:var(--accent);
 }
 
-.header{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.title{
-  font-family:Orbitron;
-  font-size:42px;
-  letter-spacing:2px;
-  margin-bottom:10px;
-  text-shadow:0 0 20px rgba(255,215,0,.4);
-}
-
-.subtitle{
-  color:#94a3b8;
-  font-size:15px;
-}
-
-.status{
-  margin-top:14px;
+nav a{
+  margin-left:32px;
+  text-decoration:none;
   font-size:14px;
   font-weight:700;
+  color:var(--muted);
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:26px;
-  backdrop-filter:blur(16px);
-  box-shadow:0 30px 60px #0008;
-  transition:all .25s ease;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 40px 90px #000a;
-}
-
-.card h3{
-  margin:0 0 8px;
-  font-size:20px;
-  letter-spacing:1px;
-}
-
-.card p{
-  margin:0 0 18px;
-  font-size:14px;
-  color:#cbd5f5;
-}
-
-.btn{
-  display:inline-block;
-  padding:12px 18px;
-  border-radius:14px;
-  font-weight:800;
-  text-decoration:none;
-  color:#020617;
-  background:linear-gradient(90deg,var(--blue),#60a5fa);
-}
-
-.btn.green{ background:linear-gradient(90deg,var(--green),#4ade80); }
-.btn.purple{ background:linear-gradient(90deg,var(--purple),#c4b5fd); }
-
-.footer{
-  margin-top:36px;
+/* ================= HERO ================= */
+.hero{
+  max-width:1200px;
+  margin:0 auto;
+  padding:50px 6% 120px;
   text-align:center;
-  font-size:12px;
-  color:#94a3b8;
+}
+
+
+.hero h1{
+  font-size:60px;
+  font-weight:900;
+  line-height:1.12;
+  margin-bottom:34px;
+}
+
+.hero h1 span{color:var(--accent);}
+
+.hero-subtitle{
+  max-width:780px;
+  margin:0 auto;
+  font-size:22px;
+  font-weight:600;
+  line-height:1.6;
+  color:var(--muted);
+}
+
+/* ================= LAUNCHER CARDS ================= */
+.launcher-cards{
+  margin-top:100px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+  max-width:1250px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+.launcher-card{
+  background:linear-gradient(
+    180deg,
+    rgba(15,21,45,.85),
+    rgba(10,15,31,.9)
+  );
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:26px;
+  padding:48px 44px 52px;
+  min-height:260px;
+  text-decoration:none;
+  color:var(--text);
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 40px 120px rgba(0,0,0,.75);
+  transition:all .35s ease;
+}
+
+.launcher-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(125,160,255,.25),
+    transparent
+  );
+  opacity:0;
+  transition:.35s ease;
+}
+
+.launcher-card:hover::before{opacity:1;}
+
+.launcher-card:hover{
+  transform:translateY(-10px);
+}
+
+.launcher-card h3{
+  font-size:25px;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.launcher-card p{
+  font-size:19px;
+  font-weight:600;
+  color:var(--muted);
+  margin-bottom:28px;
+  line-height:1.5;
+}
+
+.launch{
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.6px;
+}
+
+/* Card colors */
+.primary{--accent:#7da0ff;}
+.green{--accent:#22c55e;}
+.purple{--accent:#a78bfa;}
+
+.launch{color:var(--accent);}
+
+.primary:hover{box-shadow:0 0 90px rgba(125,160,255,.45);}
+.green:hover{box-shadow:0 0 90px rgba(34,197,94,.45);}
+.purple:hover{box-shadow:0 0 90px rgba(167,139,250,.45);}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:120px;
+  padding:40px 0;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
+  <div class="logo">TradeCorner</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Tools</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-  <div class="header">
-    <div class="title">⚡ TRADEX</div>
-    <div class="subtitle">Live Market Intelligence • Micro + Macro Flow</div>
-    <div class="status" id="status">⏳ Loading market status…</div>
-  </div>
+<section class="hero">
+  <h1>
+    Trade Smarter with<br>
+    <span>Live Intraday Opportunities</span>
+  </h1>
 
-  <div class="grid">
-
-    <div class="card">
-      <h3>🚀 LiveTrades</h3>
-      <p>
-        Real-time Net ₹Cr flow, RFactor, Index momentum & sector drilldown.
-      </p>
-      <a class="btn" href="https://livetrades.onrender.com" target="_blank">
-        Open LiveTrades
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>🧭 SectorScope</h3>
-      <p>
-        VWAP deviation, live vs 20D volume & sector strength scoring.
-      </p>
-      <a class="btn green" href="https://sectorscope.onrender.com" target="_blank">
-        Open SectorScope
-      </a>
-    </div>
-
-    <div class="card">
-  <h3>📊 Watchlist</h3>
-  <p>
-    TradingView-based sector & stock watchlist with favorites.
+  <p class="hero-subtitle">
+    Precision-driven intraday trade setups designed for discipline,
+    speed, and capital protection.
   </p>
-  <a class="btn purple" href="https://watch.onrender.com" target="_blank">
-    Open Watchlist
-  </a>
-</div>
 
+  <div class="launcher-cards">
 
-    <div class="card">
-      <h3>🪟 Split View</h3>
-      <p>
-        Open both scanners side-by-side for full market context.
-      </p>
-      <a class="btn purple" href="#" onclick="openBoth()">
-        Open Both
-      </a>
-    </div>
+    <a href="https://livetrades.onrender.com" target="_blank"
+       class="launcher-card primary">
+      <h3>🚀 Intraday Momentum Scanner</h3>
+      <p>Find the best momentum stocks</p>
+      <span class="launch">Launch →</span>
+    </a>
+
+    <a href="https://sectorscope.onrender.com" target="_blank"
+       class="launcher-card green">
+      <h3>🧭 Sector Flow</h3>
+      <p>See where big players are showing interest</p>
+      <span class="launch">Launch →</span>
+    </a>
+
+    <a href="https://watchlist-oo75.onrender.com/" target="_blank"
+       class="launcher-card purple">
+      <h3>📊 Watchlist</h3>
+      <p>Monitor stocks with clean technical structure</p>
+      <span class="launch">Launch →</span>
+    </a>
 
   </div>
+</section>
 
-  <div class="footer">
-    Built for disciplined trading • Asia/Kolkata timezone
-  </div>
-
-</div>
-
-<script>
-function openBoth(){
-  window.open("https://livetrades.onrender.com","_blank");
-  setTimeout(()=>{
-    window.open("https://sectorscope.onrender.com","_blank");
-  },300);
-}
-
-function marketStatus(){
-  const now = new Date(
-    new Date().toLocaleString("en-US",{timeZone:"Asia/Kolkata"})
-  );
-  const h = now.getHours();
-  const m = now.getMinutes();
-  const open = (h > 9 || (h === 9 && m >= 15)) &&
-               (h < 15 || (h === 15 && m <= 30));
-  return open ? "🟢 Market OPEN" : "🔴 Market CLOSED";
-}
-
-document.getElementById("status").textContent = marketStatus();
-</script>
+<footer>
+  Built for disciplined intraday traders • Asia/Kolkata timezone
+</footer>
 
 </body>
 </html>
