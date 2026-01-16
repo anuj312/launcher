@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>TradeX • Command Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:rgba(15,23,42,.75);
+  --border:rgba(148,163,184,.22);
+  --blue:#38bdf8;
+  --green:#22c55e;
+  --purple:#a78bfa;
+  --text:#e5e7eb;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #0ea5e933, transparent),
+    radial-gradient(900px 500px at 90% 10%, #22c55e22, transparent),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.container{
+  max-width:980px;
+  width:100%;
+  padding:40px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.title{
+  font-family:Orbitron;
+  font-size:42px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+  text-shadow:0 0 20px rgba(255,215,0,.4);
+}
+
+.subtitle{
+  color:#94a3b8;
+  font-size:15px;
+}
+
+.status{
+  margin-top:14px;
+  font-size:14px;
+  font-weight:700;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:26px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 30px 60px #0008;
+  transition:all .25s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 40px 90px #000a;
+}
+
+.card h3{
+  margin:0 0 8px;
+  font-size:20px;
+  letter-spacing:1px;
+}
+
+.card p{
+  margin:0 0 18px;
+  font-size:14px;
+  color:#cbd5f5;
+}
+
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:800;
+  text-decoration:none;
+  color:#020617;
+  background:linear-gradient(90deg,var(--blue),#60a5fa);
+}
+
+.btn.green{ background:linear-gradient(90deg,var(--green),#4ade80); }
+.btn.purple{ background:linear-gradient(90deg,var(--purple),#c4b5fd); }
+
+.footer{
+  margin-top:36px;
+  text-align:center;
+  font-size:12px;
+  color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="title">⚡ TRADEX</div>
+    <div class="subtitle">Live Market Intelligence • Micro + Macro Flow</div>
+    <div class="status" id="status">⏳ Loading market status…</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🚀 LiveTrades</h3>
+      <p>
+        Real-time Net ₹Cr flow, RFactor, Index momentum & sector drilldown.
+      </p>
+      <a class="btn" href="https://livetrades.onrender.com" target="_blank">
+        Open LiveTrades
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🧭 SectorScope</h3>
+      <p>
+        VWAP deviation, live vs 20D volume & sector strength scoring.
+      </p>
+      <a class="btn green" href="https://sectorscope.onrender.com" target="_blank">
+        Open SectorScope
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🪟 Split View</h3>
+      <p>
+        Open both scanners side-by-side for full market context.
+      </p>
+      <a class="btn purple" href="#" onclick="openBoth()">
+        Open Both
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Built for disciplined trading • Asia/Kolkata timezone
+  </div>
+
+</div>
+
+<script>
+function openBoth(){
+  window.open("https://livetrades.onrender.com","_blank");
+  setTimeout(()=>{
+    window.open("https://sectorscope.onrender.com","_blank");
+  },300);
+}
+
+function marketStatus(){
+  const now = new Date(
+    new Date().toLocaleString("en-US",{timeZone:"Asia/Kolkata"})
+  );
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const open = (h > 9 || (h === 9 && m >= 15)) &&
+               (h < 15 || (h === 15 && m <= 30));
+  return open ? "🟢 Market OPEN" : "🔴 Market CLOSED";
+}
+
+document.getElementById("status").textContent = marketStatus();
+</script>
+
+</body>
+</html>
